@@ -19,11 +19,20 @@ if(count($err) > 0) {
     //エラーがあったとき（ログイン画面に遷移）
     $_SESSION = $err; //$_SETTIONは連想配列なので$errが連想配列になってはいるようにする
     header('Location: sign-in.php');
+    return;
 
 } else {
     //ログインに成功したとき
-    echo 'ログインしました';
+    $result = Users::login($email, $password);
+
+    //ログインに失敗したとき
+    if(!$result) {
+        header('Location: sign-in.php');
+        return;
+    }
 }
+
+echo 'ログインに成功しました。'
 
 ?>
 

@@ -1,11 +1,5 @@
 <?php
-session_start();
-
-$error = $_SESSION;
-
-//配列初期化してセッションの削除
-$_SESSION = array();
-session_destroy();
+    require_once '../until.php';
 ?>
 
 <!DOCTYPE html>
@@ -19,6 +13,13 @@ session_destroy();
     <div>
         <form action="top.php" method="post">
             <h1>ログイン</h1>
+
+            <?php if (isset($error['msg'])) : ?>
+                <p>
+                    <?php echo $error['msg']; ?>
+                </p>
+            <?php endif ?>
+
             <div>
                 <input type="email" name="email" placeholder="xxxxxxxxxxxx@co.jp"><br>
                 <input type="text" name="password" placeholder="*********"><br>
